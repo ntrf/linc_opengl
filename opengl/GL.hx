@@ -1191,6 +1191,9 @@ extern class GL {
         inline static function glDrawElements(mode:Int, count:Int, type:Int, indices:BytesData) : Void
           { untyped __cpp__("glDrawElements({0}, {1}, {2}, (const void*)&({3}[0]))", mode, count, type, indices); }
 
+        inline static function glDrawElementsOffset(mode:Int, count:Int, type:Int, offset : Int) : Void
+          { untyped __cpp__("glDrawElements({0}, {1}, {2}, (const void*){3})", mode, count, type, offset); }
+
         inline static function glDrawPixels(width:Int, height:Int, format:Int, type:Int, pixels:BytesData) : Void
           { untyped __cpp__("glDrawPixels({0}, {1}, {2}, {3}, (const void*)&({4}[0]))", width, height, format, type, pixels); }
 
@@ -2573,6 +2576,8 @@ extern class GL {
         inline static function glVertexAttribPointer(index:Int, size:Int, type:Int, normalized:Bool, stride:Int, pointer:BytesData) : Void
           { untyped __cpp__("glVertexAttribPointer({0}, {1}, {2}, {3}, {4}, (const void*)&({5}[0]))", index, size, type, normalized, stride, pointer); }
 
+        inline static function glVertexAttribOffset(index:Int, size:Int, type:Int, normalized:Bool, stride:Int, offset : Int) : Void
+          { untyped __cpp__("glVertexAttribPointer({0}, {1}, {2}, {3}, {4}, (const void *){5})", index, size, type, normalized, stride, offset); }
 
 
     // TODO functions
@@ -2587,8 +2592,11 @@ extern class GL {
         // @:native('glGetVertexAttribPointerv')
         // static function glGetVertexAttribPointerv(index:Int, pname:Int, pointer:void**) : Void;
             
-        // inline static function glShaderSource(shader:Int, count:Int, string:const GLchar *const*, length:Array<Int>) : Void
-        // { untyped __cpp__("glShaderSource({0}, {1}, {2}, (const GLint*)&({3}[0]))", shader, count, string, length); }
+        inline static function glShaderSource(shader:Int, source : String) : Void
+        {
+          var cstr : cpp.ConstCharStar = cpp.ConstCharStar.fromString(source);
+          untyped __cpp__("{ glShaderSource({0}, 1, {1}, NULL); }", shader, cpp.RawConstPointer.addressOf(cstr));
+        }
 
 
 //GL 2.1

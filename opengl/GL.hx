@@ -2174,6 +2174,9 @@ extern class GL {
         inline static function glBufferData(target:Int, size:Int, data:BytesData, usage:Int) : Void
           { untyped __cpp__("glBufferData({0}, {1}, (const void*)&({2}[0]), {3})", target, size, data, usage); }
 
+        inline static function glBufferDataEmpty(target:Int, size:Int, usage:Int) : Void
+          { untyped __cpp__("glBufferData({0}, {1}, 0, {2})", target, size, usage); }
+
         inline static function glBufferSubData(target:Int, offset:Int, size:Int, data:BytesData) : Void
           { untyped __cpp__("glBufferSubData({0}, {1}, {2}, (const void*)&({3}[0]))", target, offset, size, data); }
 

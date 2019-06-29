@@ -2582,6 +2582,12 @@ extern class GL {
         inline static function glVertexAttribOffset(index:Int, size:Int, type:Int, normalized:Bool, stride:Int, offset : Int) : Void
           { untyped __cpp__("glVertexAttribPointer({0}, {1}, {2}, {3}, {4}, (const void *){5})", index, size, type, normalized, stride, offset); }
 
+        inline static function glVertexAttribIPointer(index:Int, size:Int, type:Int, stride:Int, pointer:BytesData) : Void
+          { untyped __cpp__("glVertexAttribIPointer({0}, {1}, {2}, {3}, (const void*)&({4}[0]))", index, size, type, stride, pointer); }
+
+        inline static function glVertexAttribIOffset(index:Int, size:Int, type:Int, stride:Int, offset : Int) : Void
+          { untyped __cpp__("glVertexAttribIPointer({0}, {1}, {2}, {3}, (const void *){4})", index, size, type, stride, offset); }
+
 
     // TODO functions
 

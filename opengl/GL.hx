@@ -2450,8 +2450,8 @@ extern class GL {
         inline static function glGetProgramiv(program:Int, pname:Int, param:Array<Int>) : Void
           { untyped __cpp__("glGetProgramiv({0}, {1}, (GLint*)&({2}[0]))", program, pname, param); }
 
-        inline static function glGetShaderInfoLog(shader:Int, bufSize:Int, length:Array<Int>, infoLog:String) : Void
-          { untyped __cpp__("glGetShaderInfoLog({0}, {1}, (GLsizei*)&({2}[0]), {3})", shader, bufSize, length, infoLog); }
+        inline static function glGetShaderInfoLog(shader:Int, bufSize:Int, length:Array<Int>, infoLog:BytesData) : Void
+          { untyped __cpp__("glGetShaderInfoLog({0}, {1}, (GLsizei*)&({2}[0]), (const void*)&({3}[0]))", shader, bufSize, length, infoLog); }
 
         inline static function glGetShaderSource(obj:Int, maxLength:Int, length:Array<Int>, source:String) : Void
           { untyped __cpp__("glGetShaderSource({0}, {1}, (GLsizei*)&({2}[0]), {3})", obj, maxLength, length, source); }

@@ -1,5 +1,6 @@
 package opengl;
 
+import haxe.io.ArrayBufferView;
 import haxe.io.BytesData;
 import haxe.io.Bytes;
 
@@ -2177,8 +2178,16 @@ extern class GL {
         inline static function glBufferDataEmpty(target:Int, size:Int, usage:Int) : Void
           { untyped __cpp__("glBufferData({0}, {1}, 0, {2})", target, size, usage); }
 
+        inline static function glBufferDataView(target:Int, data:ArrayBufferView, usage:Int) : Void
+          { untyped __cpp__("glBufferData({0}, {1}, (const void*)&({2}[{3}]), {4})",
+            target, data.byteLength, data.buffer.getData(), data.byteOffset, usage); }
+
         inline static function glBufferSubData(target:Int, offset:Int, size:Int, data:BytesData) : Void
           { untyped __cpp__("glBufferSubData({0}, {1}, {2}, (const void*)&({3}[0]))", target, offset, size, data); }
+
+        inline static function glBufferSubDataView(target:Int, offset:Int, data:ArrayBufferView) : Void
+          { untyped __cpp__("glBufferSubData({0}, {1}, {2}, (const void*)&({3}[{4}]))", 
+            target, offset, data.byteLength, data.buffer.getData(), data.byteOffset); }
 
         inline static function glDeleteBuffers(n:Int, buffers:Array<Int>) : Void
           { untyped __cpp__("glDeleteBuffers({0}, (const GLuint*)&({1}[0]))", n, buffers); }

@@ -1529,6 +1529,15 @@ extern class GL {
         inline static function glTexImage2D(target:Int, level:Int, internalformat:Int, width:Int, height:Int, border:Int, format:Int, type:Int, pixels:BytesData) : Void
           { untyped __cpp__("glTexImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, (const void*)&({8}[0]))", target, level, internalformat, width, height, border, format, type, pixels); }
 
+        inline static function glTexImage2DEmpty(target:Int, level:Int, internalformat:Int, width:Int, height:Int, border:Int, format:Int, type:Int) : Void
+          { untyped __cpp__("glTexImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, 0)", target, level, internalformat, width, height, border, format, type); }
+        inline static function glTexImage2DView(target:Int, level:Int, internalformat:Int, width:Int, height:Int, border:Int, format:Int, type:Int, data:ArrayBufferView) : Void
+        {
+          untyped __cpp__("glTexImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, (const void*)&({8}[{9}]))", 
+            target, level, internalformat, width, height, border, format, type, 
+            data.getData(), data.byteOffset);
+        }
+
         inline static function glTexParameterfv(target:Int, pname:Int, params:Array<cpp.Float32>) : Void
           { untyped __cpp__("glTexParameterfv({0}, {1}, (const GLfloat*)&({2}[0]))", target, pname, params); }
 
@@ -1540,6 +1549,13 @@ extern class GL {
 
         inline static function glTexSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, width:Int, height:Int, format:Int, type:Int, pixels:BytesData) : Void
           { untyped __cpp__("glTexSubImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, (const void*)&({8}[0]))", target, level, xoffset, yoffset, width, height, format, type, pixels); }
+
+	      inline static function glTexSubImage2DView(target:Int, level:Int, xoffset:Int, yoffset:Int, width:Int, height:Int, format:Int, type:Int, data:ArrayBufferView) : Void
+        {
+		      untyped __cpp__("glTexSubImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, (const void*)&({8}[{9}]))",
+            target, level, xoffset, yoffset, width, height, format, type,
+            data.getData(), data.byteOffset);
+        }
 
         inline static function glVertex2dv(v:Array<cpp.Float64>) : Void
           { untyped __cpp__("glVertex2dv((const GLdouble*)&({0}[0]))", v); }

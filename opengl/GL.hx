@@ -1554,7 +1554,7 @@ extern class GL {
         {
 		      untyped __cpp__("glTexSubImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, (const void*)&({8}[{9}]))",
             target, level, xoffset, yoffset, width, height, format, type,
-            data.getData(), data.byteOffset);
+            data.buffer.getData(), data.byteOffset);
         }
 
         inline static function glVertex2dv(v:Array<cpp.Float64>) : Void

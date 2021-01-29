@@ -1231,14 +1231,22 @@ extern class GL {
         inline static function glGetClipPlane(plane:Int, equation:Array<cpp.Float64>) : Void
           { untyped __cpp__("glGetClipPlane({0}, (GLdouble*)&({1}[0]))", plane, equation); }
 
+        @:deprecated("Use glGetDoublePtr instead. Instead of an Array use cpp.RawPointer.addressOf() to get address of the variable.")
         inline static function glGetDoublev(pname:Int, params:Array<cpp.Float64>) : Void
           { untyped __cpp__("glGetDoublev({0}, (GLdouble*)&({1}[0]))", pname, params); }
-
+        @:deprecated("Use glGetFloatPtr instead. Instead of an Array use cpp.RawPointer.addressOf() to get address of the variable.")
         inline static function glGetFloatv(pname:Int, params:Array<cpp.Float32>) : Void
           { untyped __cpp__("glGetFloatv({0}, (GLfloat*)&({1}[0]))", pname, params); }
-
+        @:deprecated("Use glGetIntegerPtr instead. Instead of an Array use cpp.RawPointer.addressOf() to get address of the variable.")
         inline static function glGetIntegerv(pname:Int, params:Array<Int>) : Void
           { untyped __cpp__("glGetIntegerv({0}, (GLint*)&({1}[0]))", pname, params); }
+
+        @:native("glGetDoublev")
+        extern static function glGetDoublePtr(pname:Int, result:cpp.RawPointer<cpp.Float64>) : Void;
+        @:native("glGetFloatv")
+        extern static function glGetFloatPtr(pname:Int, result:cpp.RawPointer<cpp.Float32>) : Void;
+        @:native("glGetIntegerv")
+        extern static function glGetIntegerPtr(pname:Int, result:cpp.RawPointer<cpp.Int32>) : Void;
 
         inline static function glGetLightfv(light:Int, pname:Int, params:Array<cpp.Float32>) : Void
           { untyped __cpp__("glGetLightfv({0}, {1}, (GLfloat*)&({2}[0]))", light, pname, params); }
